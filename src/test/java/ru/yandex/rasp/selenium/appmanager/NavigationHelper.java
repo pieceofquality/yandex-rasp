@@ -10,5 +10,7 @@ public class NavigationHelper extends HelperBase {
     }
 
     public void goToRasp() {
+        click(By.linkText("ещё"));
+        click(By.linkText("Расписания"));
     }
 }

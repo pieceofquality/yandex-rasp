@@ -29,13 +29,13 @@ public class YandexRaspTests extends TestBase {
 //	· Время в пути
 
     @Test
-    public void testYandexRasp(Date time){
-        RaspData raspData = new RaspData("Екатеринбург", "Каменск-Уральский", time);
+    public void testYandexRasp(){
+        RaspData raspData = new RaspData("Екатеринбург", "Каменск-Уральский", "17 июня");
         app.getNavigationHelper().goToRasp();
-        app.getRaspHelper().selectDestinations(raspData);
+        app.getRaspHelper().selectDestinationsSearch(raspData);
         app.getRaspHelper().submitSearch();
+//        raspData = new RaspData("Екатеринбург", "Каменск-Уральский", "17 июня");
         app.getRaspHelper().сheckDestinations(raspData);
-        app.getRaspHelper().submitMail();
-        app.getRaspHelper().confirmEmptyMail();
+        app.getRaspHelper().infoAboutTrip();
     }
 }
