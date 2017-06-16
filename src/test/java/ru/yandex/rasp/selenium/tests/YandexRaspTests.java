@@ -5,8 +5,9 @@ package ru.yandex.rasp.selenium.tests;
 
 import org.testng.annotations.Test;
 import ru.yandex.rasp.selenium.model.RaspData;
+import ru.yandex.rasp.selenium.model.TripData;
 
-import java.util.Date;
+import java.util.List;
 
 public class YandexRaspTests extends TestBase {
 
@@ -35,7 +36,8 @@ public class YandexRaspTests extends TestBase {
         app.getRaspHelper().selectDestinationsSearch(raspData);
         app.getRaspHelper().submitSearch();
 //        raspData = new RaspData("Екатеринбург", "Каменск-Уральский", "17 июня");
+        List<TripData> tripList= app.getTripHelper().getFirstTrip();
         app.getRaspHelper().сheckDestinations(raspData);
-        app.getRaspHelper().infoAboutTrip();
+//        app.getRaspHelper().infoAboutTrip();
     }
 }

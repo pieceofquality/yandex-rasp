@@ -17,6 +17,7 @@ public class ApplicationManager {
     private RaspHelper raspHelper;
     private String browser;
     private NavigationHelper navigationHelper;
+    private TripHelper tripHelper;
 
     public ApplicationManager(String browser) {
         this.browser = browser;
@@ -37,6 +38,7 @@ public class ApplicationManager {
         wd.get("https://yandex.ru/");
         raspHelper = new RaspHelper(wd);
         navigationHelper = new NavigationHelper(wd);
+        tripHelper = new TripHelper(wd);
 
     }
 
@@ -51,5 +53,9 @@ public class ApplicationManager {
 
     public NavigationHelper getNavigationHelper() {
         return navigationHelper;
+    }
+
+    public TripHelper getTripHelper() {
+        return tripHelper;
     }
 }
