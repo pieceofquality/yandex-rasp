@@ -22,7 +22,7 @@ public class TripHelper extends HelperBase{
        List<WebElement> elements = wd.findElements(By.cssSelector(".SearchSegment_isVisible"));
        for (WebElement element : elements) {
            String name = element.getText();
-           TripData trip = new TripData(name, null, null);
+           TripData trip = new TripData(name, null, null, 0);
            trips.add(trip);
            System.out.println(name);
        }
@@ -37,10 +37,11 @@ public class TripHelper extends HelperBase{
                System.out.println("Нет рейса на 11:38");;
            }
            String name = element.getText();
+           int price = Integer.parseInt(element.findElement(By.cssSelector("SuburbanTariffs__buttonPrice")).getText());
            String departure_time = getDepartureTime(element);
-           TripData trip = new TripData(name, departure_time, null);
+           TripData trip = new TripData(name, departure_time, null, price);
            trips.add(trip);
-           System.out.println(departure_time);
+           System.out.println(price);
        }
         return trips;
     }

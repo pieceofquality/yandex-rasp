@@ -12,7 +12,7 @@ import java.util.List;
 public class YandexRaspTests extends TestBase {
 
 
-//    	1. Открыть страницу yandex.ru.
+//  1. Открыть страницу yandex.ru.
 //	2. Перейти на страницу сервиса «Расписания».
 //  3. Найти электрички из Екатеринбурга в Каменск-Уральский на ближайшую субботу.
 //  4. Проверить, что произведен поиск и название таблицы результатов соответствует параметрам поиска.
@@ -31,7 +31,7 @@ public class YandexRaspTests extends TestBase {
 
     @Test
     public void testYandexRasp(){
-        RaspData raspData = new RaspData("Екатеринбург", "Каменск-Уральский", "17 июня");
+        RaspData raspData = new RaspData("Екатеринбург", "Каменск-Уральский", "17 июня", "электричка");
         app.getNavigationHelper().goToRasp();
         app.getRaspHelper().selectDestinationsSearch(raspData);
         app.getRaspHelper().submitSearch();

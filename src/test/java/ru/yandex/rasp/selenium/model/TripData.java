@@ -7,11 +7,15 @@ public class TripData {
     private final String name;
     private final String departureTime;
     private final String arrivalTime;
+    private final int price;
 
-    public TripData(String name, String departureTime, String arrivalTime) {
+
+
+    public TripData(String name, String departureTime, String arrivalTime, int price) {
         this.name = name;
         this.departureTime = departureTime;
         this.arrivalTime = arrivalTime;
+        this.price = price;
     }
 
     public String getName() {
@@ -26,5 +30,7 @@ public class TripData {
         return arrivalTime;
     }
 
-
+    public int getPrice() {
+        return price;
+    }
 }
