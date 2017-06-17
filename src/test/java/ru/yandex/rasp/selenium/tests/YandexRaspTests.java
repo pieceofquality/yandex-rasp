@@ -31,7 +31,7 @@ public class YandexRaspTests extends TestBase {
 
     @Test
     public void testYandexRasp(){
-        RaspData raspData = new RaspData("Екатеринбург", "Каменск-Уральский", "17 июня", "электричка");
+        RaspData raspData = new RaspData("Екатеринбург", "Каменск-Уральский", "17 июня", "Электричка");
         app.getNavigationHelper().goToRasp();
         app.getRaspHelper().selectDestinationsSearch(raspData);
         app.getRaspHelper().submitSearch();

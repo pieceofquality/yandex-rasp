@@ -18,7 +18,7 @@ public class RaspHelper extends HelperBase {
         type(By.cssSelector("[name='fromName']"), raspData.getFrom());
         type(By.cssSelector("[name='toName']"), raspData.getTo());
         type(By.cssSelector(".date-input_search__input"), raspData.getWhen());
-        click(By.linkText(raspData.getTransport()));
+        click(By.xpath("//*[.=" + "'" + raspData.getTransport() + "'" + "]"));
     }
 
     public void submitSearch() {
