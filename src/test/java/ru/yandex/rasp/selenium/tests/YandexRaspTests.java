@@ -31,12 +31,12 @@ public class YandexRaspTests extends TestBase {
 
     @Test
     public void testYandexRasp(){
-        RaspData raspData = new RaspData("Екатеринбург", "Каменск-Уральский", "17 июня", "Электричка");
+        RaspData raspData =  new RaspData("Екатеринбург", "Каменск-Уральский", "17 июня", "Электричка");
         app.getNavigationHelper().goToRasp();
         app.getRaspHelper().selectDestinationsSearch(raspData);
         app.getRaspHelper().submitSearch();
 //        raspData = new RaspData("Екатеринбург", "Каменск-Уральский", "17 июня");
-        List<TripData> tripList= app.getTripHelper().getFirstTrip();
+        List<TripData> tripList= app.getTripHelper().getTripWithTime();
         app.getRaspHelper().сheckDestinations(raspData);
 //        app.getRaspHelper().infoAboutTrip();
     }

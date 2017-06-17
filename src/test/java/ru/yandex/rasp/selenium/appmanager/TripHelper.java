@@ -5,8 +5,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import ru.yandex.rasp.selenium.model.TripData;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Created by piece on 6/16/2017.
@@ -29,15 +31,16 @@ public class TripHelper extends HelperBase{
         return trips;
     }
 
-    public List <TripData> getFirstTrip() {
+    public List <TripData> getTripWithTime() {
        List<TripData> trips = new ArrayList<TripData>();
        List<WebElement> elements = wd.findElements(By.cssSelector(".SearchSegment_isVisible"));
        for (WebElement element : elements) {
-           if (getDepartureTime(element) != "11:38") {
-               System.out.println("Нет рейса на 11:38");;
+           if (getDepartureTime(element) != "20:47") {
+               System.out.println(getDepartureTime(element));
+               System.out.println("Нет рейса на 20:47");
            }
            String name = element.getText();
-           int price = Integer.parseInt(element.findElement(By.cssSelector("SuburbanTariffs__buttonPrice")).getText());
+           int price = Integer.parseInt(element.findElement(By.cssSelector(".SuburbanTariffs__buttonPrice")).getText().replace(" Р", ""));
            String departure_time = getDepartureTime(element);
            TripData trip = new TripData(name, departure_time, null, price);
            trips.add(trip);
@@ -47,7 +50,7 @@ public class TripHelper extends HelperBase{
     }
 
     private String getDepartureTime(WebElement element) {
-        return element.findElement(By.cssSelector("[class='SearchSegment__time Time_important']")).getText();
+        return element.findElement(By.cssSelector("[class='SearchSegment__time Time_important'] span")).getText();
     }
 
 
