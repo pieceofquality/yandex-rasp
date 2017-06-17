@@ -5,10 +5,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import ru.yandex.rasp.selenium.model.TripData;
 
-import java.text.NumberFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 /**
  * Created by piece on 6/16/2017.
@@ -49,7 +49,18 @@ public class TripHelper extends HelperBase{
         return trips;
     }
 
-    private String getDepartureTime(WebElement element) {
+    public void selectFirstTrip(time){
+        List<WebElement> elements = wd.findElements(By.cssSelector("[class='SearchSegment__time Time_important'] span"));
+
+        for (WebElement element : elements) {
+            SimpleDateFormat time = new SimpleDateFormat("HH:mm");
+            Date departure_time = time.parse(time)
+            if
+        }
+
+    }
+
+    public String getDepartureTime(WebElement element) {
         return element.findElement(By.cssSelector("[class='SearchSegment__time Time_important'] span")).getText();
     }
 
