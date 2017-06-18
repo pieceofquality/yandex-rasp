@@ -49,16 +49,16 @@ public class TripHelper extends HelperBase{
         return trips;
     }
 
-    public void selectFirstTrip(time){
-        List<WebElement> elements = wd.findElements(By.cssSelector("[class='SearchSegment__time Time_important'] span"));
-
-        for (WebElement element : elements) {
-            SimpleDateFormat time = new SimpleDateFormat("HH:mm");
-            Date departure_time = time.parse(time)
-            if
-        }
-
-    }
+//    public void selectFirstTrip(time){
+//        List<WebElement> elements = wd.findElements(By.cssSelector("[class='SearchSegment__time Time_important'] span"));
+//
+//        for (WebElement element : elements) {
+//            SimpleDateFormat time = new SimpleDateFormat("HH:mm");
+//            Date departure_time = time.parse(time)
+//            if
+//        }
+//
+//    }
 
     public String getDepartureTime(WebElement element) {
         return element.findElement(By.cssSelector("[class='SearchSegment__time Time_important'] span")).getText();

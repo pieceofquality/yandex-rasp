@@ -6,6 +6,13 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import ru.yandex.rasp.selenium.model.RaspData;
 
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
+import java.time.temporal.TemporalAdjusters;
+import java.util.Locale;
+
 
 public class RaspHelper extends HelperBase {
 
@@ -47,4 +54,7 @@ public class RaspHelper extends HelperBase {
         System.out.println("Стоимость билета в долларах" + dollarPrice);
 
     }
+
+    public String nextDayOfWeek(DayOfWeek dayOfWeek) {
+        return LocalDate.now().with(TemporalAdjusters.next(dayOfWeek)).toString();    }
 }

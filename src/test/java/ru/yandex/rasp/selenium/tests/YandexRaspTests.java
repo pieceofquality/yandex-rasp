@@ -7,7 +7,12 @@ import org.testng.annotations.Test;
 import ru.yandex.rasp.selenium.model.RaspData;
 import ru.yandex.rasp.selenium.model.TripData;
 
+import java.time.DayOfWeek;
+import java.time.LocalDate;
 import java.util.List;
+
+import static java.time.DayOfWeek.MONDAY;
+import static java.time.DayOfWeek.SATURDAY;
 
 public class YandexRaspTests extends TestBase {
 
@@ -31,7 +36,7 @@ public class YandexRaspTests extends TestBase {
 
     @Test
     public void testYandexRasp(){
-        RaspData raspData =  new RaspData("Екатеринбург", "Каменск-Уральский", "17 июня", "Электричка");
+        RaspData raspData =  new RaspData("Екатеринбург", "Каменск-Уральский", app.getRaspHelper().nextDayOfWeek(SATURDAY), "Электричка");
         app.getNavigationHelper().goToRasp();
         app.getRaspHelper().selectDestinationsSearch(raspData);
         app.getRaspHelper().submitSearch();
