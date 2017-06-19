@@ -34,7 +34,7 @@ public class ApplicationManager {
             wd = new EdgeDriver();
         }
 
-        wd.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        wd.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         wd.get("https://yandex.ru/");
         raspHelper = new RaspHelper(wd);
         navigationHelper = new NavigationHelper(wd);
