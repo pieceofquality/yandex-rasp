@@ -40,8 +40,7 @@ public class YandexRaspTests extends TestBase {
         app.getNavigationHelper().goToRasp();
         app.getRaspHelper().selectDestinationsSearch(raspData);
         app.getRaspHelper().submitSearch();
-//        raspData = new RaspData("Екатеринбург", "Каменск-Уральский", "17 июня");
-        List<TripData> tripList= app.getTripHelper().getTripWithTime();
+        app.getTripHelper().getTripWithTime();
 //        app.getTripHelper().сheckDestinations(raspData);
 //        app.getRaspHelper().infoAboutTrip();
     }

@@ -32,30 +32,35 @@ public class TripHelper extends HelperBase{
         return trips;
     }
 
-    public List<TripData> getTripWithTime() {
+    public void getTripWithTime() {
         List<TripData> trips = new ArrayList<TripData>();
         List<WebElement> elements = wd.findElements(By.cssSelector(".SearchSegment_isVisible"));
         for (WebElement element : elements) {
-            if (getDepartureTime(element).isAfter(LocalTime.NOON) && roublePrice(element)<200) {
+            String name = element.getText();
+            int price = roublePrice(element);
+            int dollarprice = dollarPrice (element);
+            LocalTime departure_time = getDepartureTime(element);
+            TripData trip = new TripData(name, departure_time, null, price);
+            if (getDepartureTime(element).isAfter(LocalTime.NOON) && roublePrice(element)>200) {
                 System.out.println(getDepartureTime(element) + "    " + roublePrice(element));
-                String name = element.getText();
-                int price = roublePrice(element);
-                LocalTime departure_time = getDepartureTime(element);
-                TripData trip = new TripData(name, departure_time, null, price);
                 trips.add(trip);
-
-            } else {
-
-                System.out.println("Only trips before 12:00");
-
+                return;
             }
-        }
-        return trips;
+            }
+        if (trips.isEmpty()){
+            System.out.println("Рейсов с такими условиями нет");
+    }
+    }
+
+    private int dollarPrice(WebElement element) {
+        return 0;
     }
 
     public int roublePrice(WebElement element) {
         return Integer.parseInt(element.findElement(By.cssSelector(".SuburbanTariffs__buttonPrice")).getText().replace(" Р", ""));
     }
+
+
 
 //    public void selectFirstTrip(time){
 //        List<WebElement> elements = wd.findElements(By.cssSelector("[class='SearchSegment__time Time_important'] span"));
