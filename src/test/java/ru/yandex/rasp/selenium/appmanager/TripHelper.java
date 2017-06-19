@@ -20,7 +20,7 @@ public class TripHelper extends HelperBase{
         super(wd);
     }
 
-    public void getTripWithTime() {
+    public void getTripByParameters() {
         List<TripData> trips = new ArrayList<TripData>();
         List<WebElement> elements = wd.findElements(By.cssSelector(".SearchSegment_isVisible"));
         for (WebElement element : elements) {
@@ -55,14 +55,7 @@ public class TripHelper extends HelperBase{
     }
 
 
-    public void сheckDestinations(RaspData raspData) {
-        String destinationsText = wd.findElement(By.cssSelector("h1")).getText();
-        String arriveDateText = wd.findElement(By.cssSelector("[class='SearchTitle__subtitle']")).getText();
-        String substr = raspData.getFrom().substring(0, raspData.getFrom().length()-2);
-        Assert.assertTrue(destinationsText.contains(raspData.getFrom()));
-        Assert.assertTrue(destinationsText.contains(raspData.getTo()));
-        Assert.assertTrue(arriveDateText.contains(raspData.getWhen()));
+    public void checkTripTable(TripData tripData) {
+
     }
-
-
 }

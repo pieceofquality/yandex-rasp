@@ -32,7 +32,14 @@ public class RaspHelper extends HelperBase {
         click(By.cssSelector("[type='submit']"));
     }
 
-
+    public void сheckDestinationsTable(RaspData raspData) {
+        String destinationsText = wd.findElement(By.cssSelector("h1")).getText();
+        String arriveDateText = wd.findElement(By.cssSelector("[class='SearchTitle__subtitle']")).getText();
+        String substr = raspData.getFrom().substring(0, raspData.getFrom().length()-2);
+        Assert.assertTrue(destinationsText.contains(raspData.getFrom()));
+        Assert.assertTrue(destinationsText.contains(raspData.getTo()));
+        Assert.assertTrue(arriveDateText.contains(raspData.getWhen()));
+    }
 
     public String nextDayOfWeek(DayOfWeek dayOfWeek) {
         return LocalDate.now().with(TemporalAdjusters.next(dayOfWeek)).toString();    }
