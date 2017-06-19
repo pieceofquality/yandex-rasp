@@ -8,8 +8,11 @@ import java.time.LocalTime;
 public class TripData {
     private final String name;
     private final LocalTime departureTime;
+    private final String departurePoint;
     private final String arrivalTime;
+    private final String arrivalPoint;
     private final int price;
+    private final String travelTime;
 
 
 
