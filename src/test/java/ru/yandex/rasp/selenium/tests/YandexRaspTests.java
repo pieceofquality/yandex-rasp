@@ -41,7 +41,6 @@ public class YandexRaspTests extends TestBase {
         app.getRaspHelper().selectDestinationsSearch(raspData);
         app.getRaspHelper().submitSearch();
         app.getTripHelper().getTripWithTime();
-//        app.getTripHelper().сheckDestinations(raspData);
-//        app.getRaspHelper().infoAboutTrip();
+        app.getTripHelper().сheckDestinations(raspData);
     }
 }
