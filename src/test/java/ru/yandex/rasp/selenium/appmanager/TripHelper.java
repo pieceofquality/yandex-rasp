@@ -3,11 +3,12 @@ package ru.yandex.rasp.selenium.appmanager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
+import ru.yandex.rasp.selenium.model.RaspData;
 import ru.yandex.rasp.selenium.model.TripData;
 
-import java.text.SimpleDateFormat;
+import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -31,22 +32,29 @@ public class TripHelper extends HelperBase{
         return trips;
     }
 
-    public List <TripData> getTripWithTime() {
-       List<TripData> trips = new ArrayList<TripData>();
-       List<WebElement> elements = wd.findElements(By.cssSelector(".SearchSegment_isVisible"));
-       for (WebElement element : elements) {
-           if (getDepartureTime(element) != "20:47") {
-               System.out.println(getDepartureTime(element));
-               System.out.println("Нет рейса на 20:47");
-           }
-           String name = element.getText();
-           int price = Integer.parseInt(element.findElement(By.cssSelector(".SuburbanTariffs__buttonPrice")).getText().replace(" Р", ""));
-           String departure_time = getDepartureTime(element);
-           TripData trip = new TripData(name, departure_time, null, price);
-           trips.add(trip);
-           System.out.println(price);
-       }
+    public List<TripData> getTripWithTime() {
+        List<TripData> trips = new ArrayList<TripData>();
+        List<WebElement> elements = wd.findElements(By.cssSelector(".SearchSegment_isVisible"));
+        for (WebElement element : elements) {
+            if (getDepartureTime(element).isAfter(LocalTime.NOON) && roublePrice(element)<200) {
+                System.out.println(getDepartureTime(element) + "    " + roublePrice(element));
+                String name = element.getText();
+                int price = roublePrice(element);
+                LocalTime departure_time = getDepartureTime(element);
+                TripData trip = new TripData(name, departure_time, null, price);
+                trips.add(trip);
+
+            } else {
+
+                System.out.println("Only trips before 12:00");
+
+            }
+        }
         return trips;
+    }
+
+    public int roublePrice(WebElement element) {
+        return Integer.parseInt(element.findElement(By.cssSelector(".SuburbanTariffs__buttonPrice")).getText().replace(" Р", ""));
     }
 
 //    public void selectFirstTrip(time){
@@ -60,9 +68,32 @@ public class TripHelper extends HelperBase{
 //
 //    }
 
-    public String getDepartureTime(WebElement element) {
-        return element.findElement(By.cssSelector("[class='SearchSegment__time Time_important'] span")).getText();
+    public LocalTime getDepartureTime(WebElement element) {
+        return LocalTime.parse(element.findElement(By.cssSelector("[class='SearchSegment__time Time_important'] span")).getText());
     }
 
+
+    public void сheckDestinations(RaspData raspData) {
+        String destinationsText = wd.findElement(By.cssSelector("h1")).getText();
+        String arriveDateText = wd.findElement(By.cssSelector("[class='SearchTitle__subtitle']")).getText();
+        String substr = raspData.getFrom().substring(0, raspData.getFrom().length()-2);
+//      System.out.println(raspData.getFrom());
+//      RaspData raspData = new RaspData(substr, raspData.getTo(), raspData.getWhen());
+        Assert.assertTrue(destinationsText.contains(raspData.getFrom()));
+        Assert.assertTrue(destinationsText.contains(raspData.getTo()));
+        Assert.assertTrue(arriveDateText.contains(raspData.getWhen()));
+    }
+
+    public void infoAboutTrip(WebElement el) {
+        String departureTime = el.findElement(By.cssSelector("[class='SearchSegment__time Time_important']")).getText();
+        String  roublePrice = el.findElement(By.cssSelector("[class='Price SuburbanTariffs__buttonPrice']")).getText();
+        wd.findElement(By.cssSelector("[class='Select CurrencySelect']")).click();
+        wd.findElement(By.cssSelector("[data-value='USD']")).click();
+        String dollarPrice = el.findElement(By.cssSelector("")).getText();
+        System.out.println("Время отправления" + departureTime);
+        System.out.println("Стоимость билета в рублях" + roublePrice);
+        System.out.println("Стоимость билета в долларах" + dollarPrice);
+
+    }
 
 }

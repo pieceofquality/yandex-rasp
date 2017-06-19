@@ -32,28 +32,7 @@ public class RaspHelper extends HelperBase {
         click(By.cssSelector("[type='submit']"));
     }
 
-    public void сheckDestinations(RaspData raspData) {
-        String destinationsText = wd.findElement(By.cssSelector("h1")).getText();
-        String arriveDateText = wd.findElement(By.cssSelector("[class='SearchTitle__subtitle']")).getText();
-        String substr = raspData.getFrom().substring(0, raspData.getFrom().length()-2);
-//      System.out.println(raspData.getFrom());
-//      RaspData raspData = new RaspData(substr, raspData.getTo(), raspData.getWhen());
-        Assert.assertTrue(destinationsText.contains(raspData.getFrom()));
-        Assert.assertTrue(destinationsText.contains(raspData.getTo()));
-        Assert.assertTrue(arriveDateText.contains(raspData.getWhen()));
-    }
 
-    public void infoAboutTrip(WebElement el) {
-        String departureTime = el.findElement(By.cssSelector("[class='SearchSegment__time Time_important']")).getText();
-        String  roublePrice = el.findElement(By.cssSelector("[class='Price SuburbanTariffs__buttonPrice']")).getText();
-        wd.findElement(By.cssSelector("[class='Select CurrencySelect']")).click();
-        wd.findElement(By.cssSelector("[data-value='USD']")).click();
-        String dollarPrice = el.findElement(By.cssSelector("")).getText();
-        System.out.println("Время отправления" + departureTime);
-        System.out.println("Стоимость билета в рублях" + roublePrice);
-        System.out.println("Стоимость билета в долларах" + dollarPrice);
-
-    }
 
     public String nextDayOfWeek(DayOfWeek dayOfWeek) {
         return LocalDate.now().with(TemporalAdjusters.next(dayOfWeek)).toString();    }

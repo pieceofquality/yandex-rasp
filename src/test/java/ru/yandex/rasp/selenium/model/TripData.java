@@ -1,17 +1,19 @@
 package ru.yandex.rasp.selenium.model;
 
+import java.time.LocalTime;
+
 /**
  * Created by piece on 6/16/2017.
  */
 public class TripData {
     private final String name;
-    private final String departureTime;
+    private final LocalTime departureTime;
     private final String arrivalTime;
     private final int price;
 
 
 
-    public TripData(String name, String departureTime, String arrivalTime, int price) {
+    public TripData(String name, LocalTime departureTime, String arrivalTime, int price) {
         this.name = name;
         this.departureTime = departureTime;
         this.arrivalTime = arrivalTime;
@@ -22,7 +24,7 @@ public class TripData {
         return name;
     }
 
-    public String getDepartureTime() {
+    public LocalTime getDepartureTime() {
         return departureTime;
     }
 
