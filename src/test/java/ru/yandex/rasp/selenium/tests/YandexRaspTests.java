@@ -38,7 +38,7 @@ public class YandexRaspTests extends TestBase {
         app.getRaspHelper().submitSearch();
         //  4. Проверить, что произведен поиск и название таблицы результатов соответствует параметрам поиска.
 //        app.getRaspHelper().сheckDestinationsTable(raspData);
-        Assert.assertEquals(app.getRaspHelper().destinationsText(), raspData.getFrom());
+//        Assert.assertEquals(app.getRaspHelper().destinationsText(), raspData.getFrom());
         //  5. Сохранить данные о самом раннем рейсе, который отправляется не ранее 12:00 и билет на который стоит не более 200 р.
         //	6. Вывести на консоль данные о рейсе, а именно:
         //   · Время отправления
